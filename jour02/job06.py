@@ -50,13 +50,8 @@ plat = {
 }
 commande1 = Commande(1, plat)
 print(commande1.get_statut())
-print('----------------')
-print("liste des produits :")
-print(commande1.get_liste_produits())
-print('----------------')
 commande1.add_produit("Pomme")
 commande1.add_produit("Banane")
 commande1.add_produit("Orange")
-print('----------------')
 commande1.afficher_commande()
 commande1.paiement_commande()
