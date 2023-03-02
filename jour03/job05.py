@@ -22,24 +22,24 @@ class Jeu:
         self.joueurs = []
         self.set_difficulty()
     def set_difficulty(self):
-        difficulty = input("Choisir une difficulté (0 : vie du personnage ,1 : facile, 2 : moyenne, 3 : difficile) : ")
+        difficulty = input("Choisir une difficulté (1 : facile, 2 : moyenne, 3 : difficile) : ")
         difficulty = int(difficulty)
-        if difficulty >= 0 and difficulty <= 3:
+        if difficulty >= 1 and difficulty <= 3:
             print("Difficulté choisie: ", difficulty)
             self.apply_difficulty(difficulty)
         else:
             print("Difficulté non valide")
             self.set_difficulty()
     def apply_difficulty(self, difficulty):
-        for joueur in self.joueurs:
-            if difficulty == 0:
-                pass
-            elif difficulty == 1:
-                joueur.vie = 100
-            elif difficulty == 2:
-                joueur.vie = 50
-            elif difficulty == 3:
-                joueur.vie = 25
+        if difficulty == 1:
+            self.joueurs.append(Personnage("Joueur 1", 100))
+            self.joueurs.append(Personnage("Joueur 2", 100))
+        elif difficulty == 2:
+            self.joueurs.append(Personnage("Joueur 1", 50))
+            self.joueurs.append(Personnage("Joueur 2", 50))
+        elif difficulty == 3:
+            self.joueurs.append(Personnage("Joueur 1", 30))
+            self.joueurs.append(Personnage("Joueur 2", 30))
     def ajouter_joueur(self, joueur):
         self.joueurs.append(joueur)
 
@@ -75,6 +75,7 @@ class Jeu:
             joueur2 = self.joueurs[1]
             self.afficher_joueurs()
             self.tour(joueur1, joueur2,count)
+            count += 1
             if self.verifier_vie():
                 break
             self.afficher_joueurs()
@@ -86,9 +87,5 @@ class Jeu:
         print("Le gagnant est: ", self.joueurs[0].nom)
 
 
-joueur1 = Personnage("Bob", 50)
-joueur2 = Personnage("Alice", 50)
 Jeu = Jeu()
-Jeu.ajouter_joueur(joueur1)
-Jeu.ajouter_joueur(joueur2)
 Jeu.jouer()
